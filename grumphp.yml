@@ -1,0 +1,38 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    ascii:
+        failed: grumphp-grumpy.txt
+        succeeded: grumphp-happy.txt
+    tasks:
+        phpcsfixer2:
+            allow_risky: ~
+            cache_file: ~
+            config: ~
+            rules: []
+            using_cache: ~
+            config_contains_finder: true
+            verbose: true
+            diff: false
+            triggered_by: ['php']
+        git_blacklist:
+            keywords:
+                - "die("
+                - "die;"
+                - "var_dump("
+                - "print_pre("
+                - "debug_backtrace("
+                - "dump("
+            triggered_by: [php]
+        git_commit_message:
+            allow_empty_message: false
+            enforce_capitalized_subject: false
+            enforce_no_subject_trailing_period: false
+            enforce_single_lined_subject: true
+            max_body_width: 256
+            max_subject_width: 256
+            matchers:
+                Must not be fix: /^(?!(fix|fx|bugfix)$).*$/
+            case_insensitive: true
+            multiline: true
+            additional_modifiers: ''
